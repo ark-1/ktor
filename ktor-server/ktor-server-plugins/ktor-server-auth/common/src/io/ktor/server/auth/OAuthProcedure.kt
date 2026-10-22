@@ -10,6 +10,7 @@ import io.ktor.util.*
 import io.ktor.util.logging.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CancellationException
+import org.jetbrains.kotlin.compiler.plugin.template.DSL
 import org.jetbrains.kotlin.compiler.plugin.template.Required
 
 private val Logger: Logger = KtorSimpleLogger("io.ktor.auth.oauth")
@@ -118,7 +119,7 @@ public fun OAuthAuthenticationProvider.staticSettings(): OAuthServerSettings? = 
  */
 public fun AuthenticationConfig.oauth(
     name: String? = null,
-    configure: OAuthAuthenticationProvider.Config.() -> Unit
+    @DSL configure: OAuthAuthenticationProvider.Config.() -> Unit
 ) {
     oauth(name, description = null, configure)
 }
@@ -134,7 +135,7 @@ public fun AuthenticationConfig.oauth(
 public fun AuthenticationConfig.oauth(
     name: String? = null,
     description: String? = null,
-    configure: OAuthAuthenticationProvider.Config.() -> Unit
+    @DSL configure: OAuthAuthenticationProvider.Config.() -> Unit
 ) {
     val provider = OAuthAuthenticationProvider.Config(name, description).apply(configure).build()
     register(provider)

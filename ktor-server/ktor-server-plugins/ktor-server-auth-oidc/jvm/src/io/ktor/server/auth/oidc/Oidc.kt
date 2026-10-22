@@ -18,6 +18,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import org.jetbrains.kotlin.compiler.plugin.template.DSL
 
 private val ProviderNameRegex = Regex("[a-z0-9]+(?:-[a-z0-9]+)*")
 
@@ -233,7 +234,7 @@ public class Oidc internal constructor(
      */
     public suspend fun identityProvider(
         name: String,
-        configure: OidcProviderConfig.() -> Unit,
+        @DSL configure: OidcProviderConfig.() -> Unit,
     ): OidcProvider {
         val config = reserveProviderSlot(name, configure)
         try {

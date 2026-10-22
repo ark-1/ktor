@@ -11,6 +11,8 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KeepGeneratedSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.serializer
+import org.jetbrains.kotlin.compiler.plugin.template.DSL
+import org.jetbrains.kotlin.compiler.plugin.template.ExactlyOneOf
 import kotlin.jvm.JvmInline
 
 /**
@@ -905,7 +907,7 @@ public data class Response(
          * @param name The link identifier.
          * @param configure DSL to configure the [Link].
          */
-        public fun link(name: String, configure: Link.Builder.() -> Unit) {
+        public fun link(name: String, @DSL configure: Link.Builder.() -> Unit) {
             _links[name] = Link.Builder().apply(configure).build()
         }
 
@@ -934,6 +936,8 @@ public data class Response(
         }
     }
 }
+
+private const val LinkOperationGroup = "operation"
 
 /**
  * Represents a possible design-time link for a response. The presence of a link does not guarantee
@@ -981,6 +985,7 @@ public data class Link(
          *
          * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.openapi.Link.Builder.operationRef)
          */
+        @ExactlyOneOf(LinkOperationGroup, "operationRef")
         public var operationRef: String? = null
 
         /**
@@ -988,6 +993,7 @@ public data class Link(
          *
          * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.openapi.Link.Builder.operationId)
          */
+        @ExactlyOneOf(LinkOperationGroup, "operationId")
         public var operationId: String? = null
 
         /**

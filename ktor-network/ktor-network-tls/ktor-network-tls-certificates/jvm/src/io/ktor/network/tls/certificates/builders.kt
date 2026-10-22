@@ -7,6 +7,7 @@ package io.ktor.network.tls.certificates
 import io.ktor.network.tls.*
 import io.ktor.network.tls.extensions.*
 import io.ktor.util.*
+import org.jetbrains.kotlin.compiler.plugin.template.DSL
 import org.jetbrains.kotlin.compiler.plugin.template.Required
 import java.io.*
 import java.net.*
@@ -181,7 +182,7 @@ public class KeyStoreBuilder internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.network.tls.certificates.KeyStoreBuilder.certificate)
      */
-    public fun certificate(alias: String, block: CertificateBuilder.() -> Unit) {
+    public fun certificate(alias: String, @DSL block: CertificateBuilder.() -> Unit) {
         certificates[alias] = CertificateBuilder().apply(block).build()
     }
 

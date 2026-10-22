@@ -15,6 +15,7 @@ import io.ktor.server.sessions.*
 import io.ktor.server.util.*
 import io.ktor.util.reflect.*
 import io.ktor.utils.io.*
+import org.jetbrains.kotlin.compiler.plugin.template.DSL
 import org.jetbrains.kotlin.compiler.plugin.template.Required
 import kotlin.reflect.KClass
 
@@ -458,7 +459,7 @@ public class OAuth2SessionFlow<S : Any, P : Any> internal constructor(
  * @return an OAuth 2.0 flow for route installation.
  */
 @ExperimentalKtorApi
-public fun oauth2(name: String, configure: OAuth2FlowConfig.() -> Unit): OAuth2Flow =
+public fun oauth2(name: String, @DSL configure: OAuth2FlowConfig.() -> Unit): OAuth2Flow =
     OAuth2Flow.from(name, OAuth2FlowConfig().apply(configure))
 
 /**

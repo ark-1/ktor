@@ -12,6 +12,7 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            api(libs.dsl.checker.annotations)
             api(projects.ktorHttp)
             implementation(projects.ktorIo)
             implementation(libs.kotlinx.serialization.core)
