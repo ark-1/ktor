@@ -10,6 +10,7 @@ import io.ktor.util.*
 import io.ktor.util.logging.*
 import io.ktor.utils.io.*
 import kotlinx.coroutines.CancellationException
+import org.jetbrains.kotlin.compiler.plugin.template.Required
 
 private val Logger: Logger = KtorSimpleLogger("io.ktor.auth.oauth")
 
@@ -55,6 +56,7 @@ public class OAuthAuthenticationProvider internal constructor(config: Config) : 
          *
          * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.OAuthAuthenticationProvider.Config.client)
          */
+        @Required("client must be set")
         public lateinit var client: HttpClient
 
         /**
@@ -76,6 +78,7 @@ public class OAuthAuthenticationProvider internal constructor(config: Config) : 
          *
          * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.OAuthAuthenticationProvider.Config.urlProvider)
          */
+        @Required("urlProvider must be set")
         public lateinit var urlProvider: suspend ApplicationCall.(OAuthServerSettings) -> String
 
         /**

@@ -7,6 +7,7 @@ package io.ktor.network.tls.certificates
 import io.ktor.network.tls.*
 import io.ktor.network.tls.extensions.*
 import io.ktor.util.*
+import org.jetbrains.kotlin.compiler.plugin.template.Required
 import java.io.*
 import java.net.*
 import java.security.*
@@ -47,6 +48,7 @@ public class CertificateBuilder internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.network.tls.certificates.CertificateBuilder.password)
      */
+    @Required("password must be set")
     public lateinit var password: String
 
     /**

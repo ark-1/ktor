@@ -11,6 +11,7 @@ import io.ktor.http.content.*
 import io.ktor.server.application.*
 import io.ktor.server.application.hooks.*
 import io.ktor.utils.io.*
+import org.jetbrains.kotlin.compiler.plugin.template.Required
 
 /**
  * A response content handled by the [Jte] plugin.
@@ -36,6 +37,7 @@ public class JteContent(
  */
 @KtorDsl
 public class JteConfig {
+    @Required("templateEngine must be set")
     public lateinit var templateEngine: TemplateEngine
 }
 

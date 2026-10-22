@@ -9,6 +9,7 @@ plugins {
 kotlin {
     sourceSets {
         jvmMain.dependencies {
+            api(libs.dsl.checker.annotations)
             api(projects.ktorNetworkTls)
         }
         jvmTest.dependencies {

@@ -18,6 +18,8 @@ import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
 import io.ktor.util.annotations.*
 import io.ktor.utils.io.*
+import org.jetbrains.kotlin.compiler.plugin.template.DSL
+import org.jetbrains.kotlin.compiler.plugin.template.Required
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
@@ -130,6 +132,7 @@ public class OidcProviderConfig internal constructor(
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcProviderConfig.issuer)
      */
+    @Required("issuer must be set")
     public lateinit var issuer: String
 
     /**
@@ -178,6 +181,7 @@ public class OidcProviderConfig internal constructor(
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcProviderConfig.bearer)
      */
+    @DSL
     public fun bearer(configure: OidcBearerConfig.() -> Unit = {}) {
         bearerConfig = OidcBearerConfig().apply(configure)
     }
@@ -191,6 +195,7 @@ public class OidcProviderConfig internal constructor(
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcProviderConfig.oauth)
      */
+    @DSL
     public fun oauth(configure: OidcOAuthConfig.() -> Unit) {
         val config = OidcOAuthConfig(name).apply(configure)
         if (!config.sessionsDisabled && config.sessionConfig == null) {
@@ -420,6 +425,7 @@ public class OidcBearerConfig internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcBearerConfig.audience)
      */
+    @Required("audience must be set")
     public var audience: Set<String> = emptySet()
 
     /**
@@ -439,6 +445,7 @@ public class OidcBearerConfig internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcBearerConfig.introspection)
      */
+    @DSL
     public fun introspection(configure: OidcTokenIntrospectionConfig.() -> Unit) {
         introspectionConfig = OidcTokenIntrospectionConfig().apply(configure)
     }
@@ -466,6 +473,7 @@ public class OidcTokenIntrospectionConfig internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcTokenIntrospectionConfig.endpoint)
      */
+    @Required("endpoint must be set")
     public lateinit var endpoint: String
 
     /**
@@ -473,6 +481,7 @@ public class OidcTokenIntrospectionConfig internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcTokenIntrospectionConfig.clientId)
      */
+    @Required("clientId must be set")
     public lateinit var clientId: String
 
     /**
@@ -480,6 +489,7 @@ public class OidcTokenIntrospectionConfig internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcTokenIntrospectionConfig.clientSecret)
      */
+    @Required("clientSecret must be set")
     public lateinit var clientSecret: String
 
     /**
@@ -567,6 +577,7 @@ public class OidcOAuthConfig internal constructor(
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcOAuthConfig.clientId)
      */
+    @Required("clientId must be set")
     public lateinit var clientId: String
 
     /**
@@ -574,6 +585,7 @@ public class OidcOAuthConfig internal constructor(
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.oidc.OidcOAuthConfig.clientSecret)
      */
+    @Required("clientSecret must be set")
     public lateinit var clientSecret: String
 
     /**

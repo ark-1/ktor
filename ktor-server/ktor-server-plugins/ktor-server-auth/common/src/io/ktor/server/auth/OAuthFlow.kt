@@ -15,6 +15,7 @@ import io.ktor.server.sessions.*
 import io.ktor.server.util.*
 import io.ktor.util.reflect.*
 import io.ktor.utils.io.*
+import org.jetbrains.kotlin.compiler.plugin.template.Required
 import kotlin.reflect.KClass
 
 internal sealed class OAuth2FlowCallback {
@@ -55,6 +56,7 @@ public abstract class OAuthFlowConfigBase internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.OAuthFlowConfigBase.client)
      */
+    @Required("client must be set")
     public var client: HttpClient? = null
 
     /**
@@ -80,6 +82,7 @@ public abstract class OAuthFlowConfigBase internal constructor() {
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.OAuthFlowConfigBase.loginPath)
      */
+    @Required("loginPath must be set")
     public var loginPath: String? = null
 
     /**
@@ -266,6 +269,7 @@ public open class OAuth2SessionsConfig<S : Any, P : Any> internal constructor() 
      *
      * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.auth.OAuth2SessionsConfig.sessionCreator)
      */
+    @Required("sessionCreator must be set")
     public var sessionCreator: (suspend RoutingContext.(OAuthAccessTokenResponse.OAuth2) -> S?)? = null
 
     internal open fun validate(flowName: String) {
