@@ -9,6 +9,7 @@ description = ""
 plugins {
     id("ktorbuild.project.library")
     id("kotlinx-serialization")
+    alias(libs.plugins.dsl.checker)
 }
 
 kotlin {
@@ -16,6 +17,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            api(libs.dsl.checker.annotations)
             api(projects.ktorUtils)
             api(projects.ktorHttp)
             api(projects.ktorSerialization)

@@ -8,6 +8,7 @@ import io.ktor.server.application.*
 import io.ktor.server.config.*
 import io.ktor.util.logging.*
 import io.ktor.utils.io.*
+import org.jetbrains.kotlin.compiler.plugin.template.DSL
 
 /**
  * Engine environment configuration builder
@@ -39,6 +40,7 @@ public expect class ApplicationEnvironmentBuilder() {
     public fun build(): ApplicationEnvironment
 }
 
+@DSL
 public fun applicationEnvironment(
     block: ApplicationEnvironmentBuilder.() -> Unit = {}
 ): ApplicationEnvironment {

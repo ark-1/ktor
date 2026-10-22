@@ -1,6 +1,7 @@
 [versions]
 
-kotlin = "2.3.21"
+kotlin = "2.4.0"
+dsl-checker = "0.1.0-SNAPSHOT"
 android-gradlePlugin = "9.4.0"
 androidx-test = "1.7.0"
 kotlinx-html = "0.12.0"
@@ -99,6 +100,8 @@ ws = "8.20.1"
 puppeteer = "25.0.4"
 
 [libraries]
+
+dsl-checker-annotations = { module = "io.github.nomisRev:plugin-annotations", version.ref = "dsl-checker" }
 
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradlePlugin" }
 androidx-core = { module = "androidx.test:core", version.ref = "androidx-test" }
@@ -256,6 +259,8 @@ mavenPublishing = { module = "com.vanniktech:gradle-maven-publish-plugin", versi
 zstd-jni = { module = "com.github.luben:zstd-jni", version.ref = "zstd-jni" }
 
 [plugins]
+
+dsl-checker = { id = "io.github.nomisRev", version.ref = "dsl-checker" }
 
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 

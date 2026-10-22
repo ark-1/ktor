@@ -13,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelAndJoin
+import org.jetbrains.kotlin.compiler.plugin.template.DSL
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
@@ -106,6 +107,7 @@ public class ServerConfig internal constructor(
  *
  * [Report a problem](https://ktor.io/feedback/?fqname=io.ktor.server.application.serverConfig)
  */
+@DSL
 public fun serverConfig(
     environment: ApplicationEnvironment = applicationEnvironment {},
     block: ServerConfigBuilder.() -> Unit = {}
